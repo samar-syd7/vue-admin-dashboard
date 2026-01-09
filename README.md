@@ -1,10 +1,16 @@
-# vue-admin-dashboard
-# Vue Admin Dashboard  A simple Vue 3 admin dashboard demonstrating: - API integration - CRUD operations - Forms and dialogs  Built with Vue 3 and REST APIs.
 # Vue Admin Dashboard
 
-A simple Vue 3 admin dashboard demonstrating:
-- API integration
-- CRUD operations
-- Forms and dialogs
+Live Demo: https://69618d7a19401d4c6d68cbfa--heartfelt-valkyrie-2e7639.netlify.app/login
 
-Built with Vue 3 and REST APIs.
+A simple Vue 3 admin dashboard demonstrating real-world features:
+- Login & route protection
+- Dashboard layout
+- API data table
+- CRUD operations using dialogs
+- Loading and error handling
+
+Tech Stack:
+- Vue 3
+- Vue Router
+- REST API (Axios)
+- Vuetify / Tailwind
