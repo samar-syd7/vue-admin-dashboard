@@ -13,11 +13,19 @@
         </button>
       </div>
 
-      <div v-if="loading">Loading...</div>
-      <div v-if="error" class="text-red-600">{{ error }}</div>
+      <!-- Loading state -->
+      <div v-if="loading" class="text-gray-600">
+        Loading users...
+      </div>
 
+      <!-- Error state -->
+      <div v-else-if="error" class="text-red-600">
+        {{ error }}
+      </div>
+
+      <!-- Data table -->
       <DataTable
-        v-if="!loading && !error"
+        v-else
         :users="users"
         @edit="openEdit"
         @delete="removeUser"
@@ -41,17 +49,17 @@ import UserForm from '../components/UserForm.vue'
 import { fetchUsers } from '../services/api'
 
 const users = ref([])
-const loading = ref(false)
-const error = ref('')
+const loading = ref(true)
+const error = ref(null)
+
 const showForm = ref(false)
 const selectedUser = ref(null)
 
 onMounted(async () => {
-  loading.value = true
   try {
     const res = await fetchUsers()
     users.value = res.data
-  } catch {
+  } catch (err) {
     error.value = 'Failed to load users'
   } finally {
     loading.value = false
@@ -70,11 +78,9 @@ const openEdit = (user) => {
 
 const saveUser = (user) => {
   if (user.id) {
-    // edit
     const index = users.value.findIndex(u => u.id === user.id)
     users.value[index] = user
   } else {
-    // add
     user.id = Date.now()
     users.value.push(user)
   }
